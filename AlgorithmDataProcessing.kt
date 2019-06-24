@@ -58,3 +58,37 @@ fun stringFormatter(numbers: IntArray): String {
     return result
 }
 
+fun arrayFormatterSolution2(numbers: IntArray): String? {
+
+    if (numbers.isEmpty()) return null
+
+    var result = ""
+    var start = numbers[0]
+    var end = start
+
+    for (i in 1..(numbers.lastIndex)) {
+        if (numbers[i] == numbers[i - 1] + 1) {
+            end = numbers[i]
+        } else {
+            if (start == end) {
+                result += "$start"
+            } else {
+                result += "$start-$end"
+            }
+            result += ", "
+            start = numbers[i]
+            end = numbers[i]
+        }
+
+        if (i == numbers.lastIndex) {
+            if (start == end) {
+                result += "$start"
+            } else {
+                result += "$start-$end"
+            }
+        }
+    }
+
+    return result
+}
+
